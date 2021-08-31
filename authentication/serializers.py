@@ -45,9 +45,9 @@ class RegisterSerializer(serializers.Serializer):
             raise serializers.ValidationError("Username already exists!")
         return username
 
-    def validate_eamil(self, email):
+    def validate_email(self, email):
         if User.objects.filter(email=email).exists():
-            raise serializers.ValidationError("Username already exists!")
+            raise serializers.ValidationError("Email already exists!")
         return email
 
     def register(self):
