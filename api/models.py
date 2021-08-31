@@ -38,6 +38,7 @@ class Assignment(models.Model):
     title = models.CharField(max_length=255)
     deadline = models.DateTimeField(default=datetime.now, blank=True)
     classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, null = True)
+    classroom_title = models.CharField(max_length=255,null=True)
     score = models.CharField(max_length=255, default="ungraded")
     # Score choices codes:
     # UNGRADED = 0

@@ -34,9 +34,11 @@ class StudentViewSet(viewsets.ModelViewSet):
         return Student.objects.all()
 
 class AssignmentViewSet(viewsets.ModelViewSet):
+    """
+       In classroom field enter classroom id
+    """
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = AssignmentSerializer
-
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

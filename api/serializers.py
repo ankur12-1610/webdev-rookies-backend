@@ -30,21 +30,20 @@ class StudentSerializer(serializers.ModelSerializer):
 
 class AssignmentSerializer(serializers.ModelSerializer):
     teacher = serializers.CharField(source = 'teacher.username', required = False, read_only = True)
-    assignment_id = serializers.IntegerField(source = 'assignment.id', required = False, read_only = True)
-    classroom = serializers.CharField(source = 'classroom.title', required = False, read_only = True)
     classroom_id = serializers.IntegerField(source = 'classroom.id', required = False, read_only = True)
-
+    classroom_title = serializers.CharField(source = 'classroom.title', required = False, read_only = True)
     def save(self, **kwargs):
         data = self.validated_data
         user = self.context['request'].user
+        score = data['score']
         title = data['title']
-        assignment = Assignment.objects.create(teacher=user, title=title)
+        classroom =  data['classroom']
+        assignment = Assignment.objects.create(teacher=user, title=title, classroom=classroom, score=score )
         assignment.save()   
-   
    
     class Meta:
         model = Assignment
-        fields = ('assignment_id','title','teacher','classroom','classroom_id','deadline','score',)
+        fields = ('id','title','teacher','classroom_title','classroom','classroom_id','deadline','score',)
 
 class AssignmentStatusSerializer(serializers.ModelSerializer):
     student = serializers.CharField(source = 'student.username', required = False, read_only = True)
