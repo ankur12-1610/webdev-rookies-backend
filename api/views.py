@@ -16,11 +16,11 @@ class ClassroomViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = ClassroomSerializer
     
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        data = serializer.save()
-        return Response(data, status=status.HTTP_201_CREATED)
+    # def post(self, request):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     data = serializer.save()
+    #     return Response(data, status=status.HTTP_201_CREATED)
 
     def get_queryset(self):
         return Classroom.objects.all()
@@ -39,11 +39,11 @@ class AssignmentViewSet(viewsets.ModelViewSet):
     """
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = AssignmentSerializer
-    def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        data = serializer.save()
-        return Response(data, status=status.HTTP_201_CREATED)
+    # def post(self, request):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     data = serializer.save()
+    #     return Response(data, status=status.HTTP_201_CREATED)
 
     def get_queryset(self):
         return Assignment.objects.all()

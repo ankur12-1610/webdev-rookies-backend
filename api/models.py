@@ -7,7 +7,7 @@ class Classroom(models.Model):
     teacher = models.ForeignKey(User, on_delete=models.CASCADE, null = True)
     title = models.CharField(max_length=255)
     classroom_color = models.CharField(max_length=255, default="blue")
-    classroom_link = models.CharField(max_length=255, default="None")
+    classroom_link = models.URLField(max_length=255, null=False, default="None")
     # #color choices code
     # BLUE=0
     # RED=1
@@ -39,7 +39,8 @@ class Assignment(models.Model):
     deadline = models.DateTimeField(default=datetime.now, blank=True)
     classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE, null = True)
     classroom_title = models.CharField(max_length=255,null=True)
-    score = models.CharField(max_length=255, default="ungraded")
+    score = models.IntegerField(max_length=255, default=0)
+    assignment_link = models.URLField(max_length=255, null=False, default="None")
     # Score choices codes:
     # UNGRADED = 0
     # POOR = 1
